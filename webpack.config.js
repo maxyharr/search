@@ -21,13 +21,19 @@ var config = {
   plugins: [
     new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"vendor", /* filename= */"vendor.bundle.js")
   ],
+  resolve: {
+    extensions: ['.webpack.js', '.web.js', '.js', '.tsx', '.ts', '.json', ''],
+  },
   module: {
-    resolve: ['.webpack.js', '.web.js', '.js', '.jsx', '.ts', '.tsx', ''],
     loaders: [
       {
         test: /\.(ts|tsx)$/,
         exclude: 'node_modules',
         loaders: ['react-hot-loader/webpack', 'babel?presets[]=es2015', 'ts-loader']
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
